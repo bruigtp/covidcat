@@ -23,8 +23,9 @@ dat <- vroom("dat.csv")%>%
   subset(ABS!="No classificat" & TIPUS!="Sospitós") %>% 
   as.data.frame()
 
-#Code to download automatically updated data. To run the following code 
-#a Socrata account is needed. One can sign up free in: https://support.socrata.com/hc/en-us
+#Code to download automatically updated daily data from the portal:
+#https://analisi.transparenciacatalunya.cat/ca/Salut/Registre-de-casos-de-COVID-19-realitzats-a-Catalun/xuwf-dxjd 
+#To downlad it a Socrata's account is needed. One can sign up free in: https://support.socrata.com/hc/en-us. Once created an account the following code downloads the latest updated data:
 
 # library(RSocrata)
 # dat <- read.socrata(
@@ -40,6 +41,7 @@ dat <- vroom("dat.csv")%>%
 #----------------
 
 #------Geography of the map by ABS-----
+#Data downloaded from https://salutweb.gencat.cat/ca/el_departament/estadistiques_sanitaries/cartografia/
 shapefileT <- rgdal::readOGR("ABS_2018/ABS_2018.shp",stringsAsFactors = FALSE,encoding = "UTF-8",use_iconv = T)
 
 #Bind Montcada i Reixac 1 and 2:
@@ -101,8 +103,9 @@ dat_edat <- vroom("dat_edat.csv")%>%
   subset(TIPUS!="Sospitós") %>% 
   as.data.frame()
 
-#Code to download automatically updated data. To run the following code 
-#a Socrata account is needed. One can sign up free in: https://support.socrata.com/hc/en-us
+#Code to download automatically updated daily data from the portal:
+#https://analisi.transparenciacatalunya.cat/Salut/Registre-de-casos-de-COVID-19-realitzats-a-Catalun/qwj8-xpvk
+#To downlad it a Socrata's account is needed. One can sign up free in: https://support.socrata.com/hc/en-us. Once created an account the following code downloads the latest updated data:
 # 
 # dat_edat <- read.socrata(
 #   "https://analisi.transparenciacatalunya.cat/resource/qwj8-xpvk.json",
@@ -118,6 +121,7 @@ dat_edat <- vroom("dat_edat.csv")%>%
 #----------------
 
 #----- Population by ABS-----
+#Data downloaded from https://analisi.transparenciacatalunya.cat/en/Salut/Registre-central-de-poblaci-del-CatSalut/ftq4-h9vk
 pob_abs<-vroom("Registre_central_de_poblaci__del_CatSalut.csv",delim=",") %>%
   subset(any==2020) %>%
   dplyr::select(CODIABS="codi Àrea Bàsica de Saut",SEXE="gènere",edat,total="població oficial")
